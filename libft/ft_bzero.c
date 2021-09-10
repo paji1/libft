@@ -9,6 +9,7 @@ void bzero(void *s, size_t n)
         ((unsigned char *)s)[i] = '\0';
         i++;
     }
+    
 }
 // int main(int argc, char const *argv[])
 // {
