@@ -1,7 +1,8 @@
 #include "../libft.h"
-int * countab(char *s,char c);
+
 int main()
 {
-	char tab[] = "taha";
-	printf("%s", ft_memset(tab,'c',2));
+	char **tbb = ft_split("                          m vl ",' ');
+	printf("%s",tbb[2]);
+	free(tbb);
 }
