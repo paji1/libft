@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tel-mouh <tel-mouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 20:16:13 by tel-mouh          #+#    #+#             */
-/*   Updated: 2021/11/09 12:17:22 by tel-mouh         ###   ########.fr       */
+/*   Created: 2021/11/10 17:54:06 by tel-mouh          #+#    #+#             */
+/*   Updated: 2021/11/10 18:20:19 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	 ft_memcmp(const void *s1, const void *s2, size_t n)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char *q;
-	unsigned char *p;
-	q = (unsigned char *)s1;
-	p = (unsigned char *)s2;
-	while (*p == *q && n-1)
-	{
-		p++;
-		q++;
-		n--;
-	}
-	return (unsigned char)*q-(unsigned char)*p;
+	char	*p;
+	size_t lens;
+	size_t lenf;
+	
+	if (!s1 || !s2)
+		return (NULL);
+	lens = ft_strlen(s2);
+	lenf = ft_strlen(s1);
+	p = (char *)malloc(lenf+ lens+1);
+	if (!p)
+		return (NULL);
+	ft_strlcpy(p,s1,lenf+1);
+	ft_strlcat(p,s2,lenf+lens+1);
+	return (p);
 }

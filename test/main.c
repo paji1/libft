@@ -1,9 +1,7 @@
 #include "../libft.h"
+int * countab(char *s,char c);
 int main()
 {
-	
-	char str[50]  = "  -99999999999999999999999999";
-	char str1[50]  = "  -99999999999999999999999999";
-	printf("%d\n",ft_atoi(str));
-	printf("%d",atoi(str1));
+	char tab[] = "taha";
+	printf("%s", ft_memset(tab,'c',2));
 }

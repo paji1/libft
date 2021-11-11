@@ -26,8 +26,8 @@ $(NAME):	$(OBJS)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 test:
-	@ $(CC) $(CFLAGS) $(TEST) -L. -lft -o $(OUTPUT)
-	@ ./$(OUTPUT)
+	$(CC) $(CFLAGS) $(TEST) -L. -lft -o $(OUTPUT)
+	./$(OUTPUT)
 
 clean:
 	$(RM) $(OBJS) $(OUTPUT)
