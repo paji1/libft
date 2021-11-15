@@ -1,33 +1,39 @@
-# ****************************** Compiler Options ******************************
+# *****************************************************************
 CC        := cc
-CFLAGS    := -Wall -Wextra -Werror
+CFLAGS    := -Wall -Wextra -Werror -g
 
-# ******************************* Other commands *******************************
+# *****************************************************************
 RM    := rm -f
 AR    := ar rcs
 
-# ******************************** Directories *********************************
+# *****************************************************************
 TESTDIR    := test
 
-# *********************************** Files ************************************
+# *****************************************************************
 NAME    := libft.a
 SRCS    := $(wildcard *.c)
+SRCS_bonus    := $(wildcard *.c)
 OBJS    := $(SRCS:.c=.o)
+OBJS_bonus    := $(SRCS_bonus:.c=.o)
 TEST    := $(TESTDIR)/main.c
 OUTPUT    := $(TESTDIR)/a.out
 
-# ********************************** Targets ***********************************
+# *****************************************************************
 all:    $(NAME) test
 
 $(NAME):	$(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
+bonus:	$(OBJS) $(OBJS_bonus)
+	@$(AR) $(NAME)  $(OBJS) $(OBJS_bonus)
 .c.o:
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
+
 
 test:
-	$(CC) $(CFLAGS) $(TEST) -L. -lft -o $(OUTPUT)
-	./$(OUTPUT)
+	@$(CC) $(CFLAGS) $(TEST) -L. -lft -o $(OUTPUT)
+	@./$(OUTPUT)
+
 
 clean:
 	$(RM) $(OBJS) $(OUTPUT)

@@ -6,7 +6,7 @@
 /*   By: tel-mouh <tel-mouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 20:16:13 by tel-mouh          #+#    #+#             */
-/*   Updated: 2021/11/09 12:17:22 by tel-mouh         ###   ########.fr       */
+/*   Updated: 2021/11/13 04:13:38 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	 ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char *p;
 	q = (unsigned char *)s1;
 	p = (unsigned char *)s2;
+	if (!n)
+		return (0);
 	while (*p == *q && n-1)
 	{
 		p++;

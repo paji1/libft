@@ -1,8 +1,5 @@
 #include "../libft.h"
-
 int main()
 {
-	char **tbb = ft_split("                          m vl ",' ');
-	printf("%s",tbb[2]);
-	free(tbb);
+	printf("%s",ft_memchr("a",'a',1));
 }

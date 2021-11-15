@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tel-mouh <tel-mouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 18:20:53 by tel-mouh          #+#    #+#             */
-/*   Updated: 2021/11/15 21:34:27 by tel-mouh         ###   ########.fr       */
+/*   Created: 2021/11/15 03:42:35 by tel-mouh          #+#    #+#             */
+/*   Updated: 2021/11/15 06:30:08 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t len;
-
-	if (!s1)
+	size_t i;
+	
+	i = len;
+	if (!dst && !src)
 		return NULL;
-	if (!*s1 )
-		return ft_strdup("");
-	while(ft_strchr(set,*s1) && *s1)
-		s1++;
-	if (!*(s1))
-		return ft_strdup("");
-	len = ft_strlen(s1)-1;
-	while (ft_strchr(set,s1[len]) && s1[len])
-		len--;
-	return ft_substr(s1,0,len+1);
+	if(!len)
+		return dst;
+	if (dst > src)
+	{
+		while (--i)
+			((char *)dst)[i] = ((char *)src)[i];;
+		((char *)dst)[i] = ((char *)src)[i];
+	}
+	else
+		dst = ft_memcpy(dst,src,len);	
+	return dst;
 }

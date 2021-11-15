@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tel-mouh <tel-mouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 19:39:18 by tel-mouh          #+#    #+#             */
-/*   Updated: 2021/11/11 06:59:44 by tel-mouh         ###   ########.fr       */
+/*   Created: 2021/11/13 04:09:40 by tel-mouh          #+#    #+#             */
+/*   Updated: 2021/11/15 21:43:51 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,74 +29,53 @@ static	int	countwords(const char *s, char c)
 	return (t);
 }
 
-static	int	*countab(const char *s, char c)
+static	int	nex(const char *s, char c, int i)
 {
-	int	*tab;
-	int	i;
 	int	t;
-	int	r;
 
-	s = ft_strtrim(s, " ");
-	tab = (int *)malloc(sizeof(int) * countwords(s, c));
-	i = -1;
 	t = 0;
-	r = 0;
-	while (s[++i])
+	while (s[i] && s[i] != c)
 	{
-		if (s[i] == c)
-		{
-			if (s[i + 1] != c)
-			{
-				tab[t++] = r;
-				r = 0;
-			}	
-		}
-		else
-			r++;
+		t++;
+		i++;
 	}
-	tab[t] = r;
-	return (tab);
+	return t;
 }
 
-static	int	assign(int *i ,int *t,char **tab)
+int  freetable(char **tab, char *s, int i)
 {
-	if (!tab)
-		return 0;
-	*i = -1;
-	*t = 0;
-	return 1;
-}
-static	void assign2(int *nums,char **tab,int t)
-{
-	tab[t] = NULL;
-	free(nums);
+	if (!s)
+	{
+		while (i)
+			free(tab[i--]);
+		free(tab[i]);
+		return 1;
+	}
+	return 0;
 }
 
 char	**ft_split(char const *s, char c)
 {
 	int	i;
 	int	t;
-	int	r;
 	char	**tab;
-	int		*nums;
 
+	i = -1;
+	t = 0;
 	if (!s)
 		return NULL;
 	tab  = malloc(sizeof(char *)*(countwords(s, c)+1));
-	if(!assign(&i,&t,tab))
+	if(!tab)
 		return NULL;
-	nums = countab(s, c);
 	while (s[++i])
-	{
 		if	(s[i] != c && t < countwords(s, c))
 		{
-			tab[t] = malloc(nums[t]+1);
-			r = -1;
-			while (++r < nums[t])
-				tab[t][r] = s[i++];
-			tab[t++][r] = 0;
+			tab[t] = ft_substr(s,i,nex(s,c,i));
+			if(freetable(tab,tab[t],t))
+				return NULL;
+			tab[t++][nex(s,c,i)] = 0;
+			i += nex(s,c,i);
 		}
-	}
-	assign2(nums,tab,t);
+	tab[t] = NULL;
 	return tab;
 }
