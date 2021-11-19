@@ -6,7 +6,7 @@
 /*   By: tel-mouh <tel-mouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 07:54:48 by tel-mouh          #+#    #+#             */
-/*   Updated: 2021/11/15 00:49:43 by tel-mouh         ###   ########.fr       */
+/*   Updated: 2021/11/18 07:20:45 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	ft_lstsize(t_list *lst)
 {
 	int	i;
-	
-	i  = 0;
+
+	i = 0;
 	while (lst)
 	{
 		i++;
 		lst = lst->next;
 	}
 	lst = NULL;
-	return i;
+	return (i);
 }

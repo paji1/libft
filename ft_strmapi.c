@@ -6,27 +6,27 @@
 /*   By: tel-mouh <tel-mouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 01:20:48 by tel-mouh          #+#    #+#             */
-/*   Updated: 2021/11/13 01:36:02 by tel-mouh         ###   ########.fr       */
+/*   Updated: 2021/11/18 07:49:49 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*p;
-	unsigned	int	i;
+	unsigned int	i;
 	int				len;
-	
+
 	if (!s)
-		return 0;
+		return (0);
 	len = ft_strlen(s);
 	i = -1;
-	p = (char *)malloc(len+1);
+	p = (char *)malloc(len + 1);
 	if (!p)
-		return NULL;
+		return (NULL);
 	while (s[++i])
-		p[i] = f(i,s[i]);
+		p[i] = f(i, s[i]);
 	p[i] = 0;
-	return p;
+	return (p);
 }

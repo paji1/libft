@@ -6,7 +6,7 @@
 /*   By: tel-mouh <tel-mouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 04:09:40 by tel-mouh          #+#    #+#             */
-/*   Updated: 2021/11/15 21:43:51 by tel-mouh         ###   ########.fr       */
+/*   Updated: 2021/11/18 07:41:35 by tel-mouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,43 +39,45 @@ static	int	nex(const char *s, char c, int i)
 		t++;
 		i++;
 	}
-	return t;
+	return (t);
 }
 
-int  freetable(char **tab, char *s, int i)
+static	int	freetable(char **tab, char *s, int i)
 {
 	if (!s)
 	{
 		while (i)
 			free(tab[i--]);
 		free(tab[i]);
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int	i;
-	int	t;
+	int		i;
+	int		t;
 	char	**tab;
 
 	i = -1;
 	t = 0;
 	if (!s)
-		return NULL;
-	tab  = malloc(sizeof(char *)*(countwords(s, c)+1));
-	if(!tab)
-		return NULL;
+		return (NULL);
+	tab = malloc(sizeof(char *) * (countwords(s, c) + 1));
+	if (!tab)
+		return (NULL);
 	while (s[++i])
-		if	(s[i] != c && t < countwords(s, c))
+	{
+		if (s[i] != c && t < countwords(s, c))
 		{
-			tab[t] = ft_substr(s,i,nex(s,c,i));
-			if(freetable(tab,tab[t],t))
-				return NULL;
-			tab[t++][nex(s,c,i)] = 0;
-			i += nex(s,c,i);
+			tab[t] = ft_substr(s, i, nex(s, c, i));
+			if (freetable(tab, tab[t], t))
+				return (NULL);
+			tab[t++][nex(s, c, i)] = 0;
+			i += nex(s, c, i);
 		}
+	}
 	tab[t] = NULL;
-	return tab;
+	return (tab);
 }
